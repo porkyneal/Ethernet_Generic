@@ -212,6 +212,26 @@ EthernetServer::operator bool()
 
 /////////////////////////////////////////////////////////
 
+void EthernetServer::setPort(uint16_t port)
+{
+  _port = port;
+}
+
+/////////////////////////////////////////////////////////
+
+void EthernetServer::end(){
+  for (uint8_t i = 0; i < MAX_SOCK_NUM; i++)
+  {
+    if(_port == server_port[i]){
+      uint8_t sockindex = i;
+      Ethernet.socketDisconnect(sockindex);
+      Ethernet.socketClose(sockindex);
+    }
+  }
+}
+
+/////////////////////////////////////////////////////////
+
 void EthernetServer::statusreport()
 {
   ETG_LOGDEBUG1("EthernetServer, port =", _port);

@@ -503,6 +503,8 @@ class EthernetServer : public Server
     virtual size_t write(uint8_t);
     virtual size_t write(const uint8_t *buf, size_t size);
     virtual operator bool();
+    virtual void setPort(uint16_t port);
+    virtual void end();
     using Print::write;
     void statusreport();
 
